@@ -1,0 +1,53 @@
+<!--endo-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>貸出完了</title>
+	<link href="/contact.css" rel="stylesheet">
+</head>
+
+<body>
+	<h1>貸出完了</h1>
+	<br>
+	<hr>
+	<br>
+	
+		<table border="1" class="c-commonTable2">
+			<tr>
+				<th>タイトル</th>
+				<td>[[${session.book.title}]]</td>
+			</tr>
+			<tr>
+				<th>名前</th>
+				<td>[[${session.name}]]</td>
+			</tr>
+				<tr>
+				<th>期日</th>
+				<td>[[${limitDate}]]</td>
+			</tr>
+
+		</table>
+		<br>
+		<a href="/host/select" class="btn-sticky">ホームへ</a>
+
+		<ul class="leaf">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+	</ul>
+
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!--おがわ-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>貸出状況</title>
+	<link href="/contact.css" rel="stylesheet">
+</head>
+
+<body>
+	<h1>貸出状況</h1>
+	<br>
+	<th:block th:if="${@hostAccount.id}">
+		<a href="/host/select" class="btn-stick">ホームへ</a>
+	</th:block>
+	<th:block th:if="${@userAccount.id}">
+		[[${@userAccount.name}]]さんこんにちは^^
+		<a href="/show" class="btn-stick">蔵書検索</a>
+		<a href="/user/index" class="btn-stick">ログアウト</a>
+	</th:block>
+	<br>
+	
+	
+	<hr>
+	<br>
+	<!--BookController-->
+	<form action="/search" method="post">
+
+		<input type="month" name="ym" th:value="${ym}">
+		<span class="addSystem">タイトル：</span>
+		<input type="text" name="title" th:value="${title}">　
+		<span class="addSystem">著者名：</span>
+		<input type="text" name="author" th:value="${author}">　
+		
+		<button class="btn-stick">検索</button>
+	</form>
+	<br>
+	
+
+
+<div class="table_box">
+
+<!--	<table border="1" >class="c-commonTable3">-->
+	
+	<table border="1" class=".c-commonTable2">
+		
+
+		<tr>
+			<th class="sticky_cross">本ID</th>
+			<th class="sticky_cross">タイトル</th>
+			<th class="sticky_col1">著者名</th>
+	
+			
+			<th:block th:each="day:${#numbers.sequence(1,maxDay)}">
+				
+
+				<td class="sticky_col">
+					[[${day}]]
+				</td>
+			</th:block>
+		</tr>
+		<tr th:each="book,stateBook:${books}">
+			<td class="sticky_row">[[${book.id}]]</td>
+			<td class="sticky_row">[[${book.title}]]</td>
+			<td class="sticky_col2">[[${book.author}]]</td>
+			
+			<th:block th:each="day,stateDay:${#numbers.sequence(1,maxDay)}">
+				
+				<th:block th:if="${rentalBook[stateBook.index][stateDay.index]} eq 1">
+					<td width="30" align="center" style="background:#ff7c5c">
+					</td>
+				</th:block>
+				<th:block th:unless="${rentalBook[stateBook.index][stateDay.index]} eq 1">
+					<td width="30" align="center" style="background: white">
+					</td>
+				</th:block>
+				
+			</th:block>
+
+		</tr>
+
+	</table>
+	
+		<ul class="leaf">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>	
+
+</body>
+
+</html>

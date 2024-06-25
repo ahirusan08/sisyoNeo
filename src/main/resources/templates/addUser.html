@@ -1,0 +1,63 @@
+<!--作成者：菊水-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>新規利用者登録</title>
+	<link href="/contact.css" rel="stylesheet">
+</head>
+
+<body>
+	<h1>新規利用者登録</h1>
+	<br>
+	<hr>
+	<br>
+
+	<div th:text="${error}" style="color: red"></div>
+
+	<form action="/user/add/check" method="post">
+		<table border="1" class="c-commonTable2">
+			<tr>
+				<th>名前</th>
+				<td>
+					<input type="text" name="name" maxlength="16"><br>
+				</td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td>
+					<input type="text" name="email" maxlength="32"><br>
+				</td>
+			</tr>
+			<tr>
+				<th>パスワード</th>
+				<td>
+					<input type="text" name="password" maxlength="16"><br>
+				</td>
+			</tr>
+
+		</table>
+		<br>
+		<button class="btn-sticky">確認</button>
+	</form>
+
+	<ul class="leaf">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+</body>
+
+</html>

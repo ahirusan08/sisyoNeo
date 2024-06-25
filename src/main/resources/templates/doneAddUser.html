@@ -1,0 +1,60 @@
+<!--作成者：菊水-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>登録完了</title>
+	<link href="/contact.css" rel="stylesheet">
+</head>
+
+<body>
+	<h1>登録完了</h1>
+	<br>
+	<hr>
+	<br>
+
+	<table border="1" class="c-commonTable2">
+		<tr>
+			<th>名前</th>
+			<td>
+				[[${name}]]
+			</td>
+		</tr>
+		<tr>
+			<th>メールアドレス</th>
+			<td>
+				[[${email}]]
+			</td>
+		</tr>
+
+	</table>
+	<br>
+	あなたの利用者IDは
+	[[${id}]]
+	です。
+	<br>
+
+	<a href="/user/index" class="btn-sticky">ログインへ</a>
+
+
+	<ul class="leaf">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+
+</body>
+
+</html>

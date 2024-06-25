@@ -1,0 +1,73 @@
+<!--おがわ-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>蔵書一覧</title>
+	<link href="/contact.css" rel="stylesheet">
+</head>
+
+<body>
+	<h1>蔵書一覧</h1>
+	<br>
+	<th:block th:if="${@hostAccount.id}">
+		<a href="/host/select" class="btn-stick">ホームへ</a>
+	</th:block>
+	<th:block th:if="${@userAccount.id}">
+		[[${@userAccount.name}]]さんこんにちは^^
+		<a href="/search" class="btn-stick">貸出状況</a>
+		<a href="/user/index" class="btn-stick">ログアウト</a>
+	</th:block>
+	<br>
+	<hr>
+	<br>
+	<!--BookController-->
+	<form action="/show" method="post">
+		
+		<span class="addSystem">タイトル：</span>
+		<input type="text" name="title" th:value="${title}">　
+		<span class="addSystem">著者名：</span>
+		<input type="text" name="author" th:value="${author}">　
+		
+		<button class="btn-stick">検索</button>
+	</form>
+	
+	<br>
+	
+<div class="table_box">
+	<table border="1">
+		<tr>
+			<th class="sticky_cross">本ID</th>
+			<th class="sticky_cross">タイトル</th>
+			<th class="sticky_cross">著者名</th>
+		</tr>
+		<tr th:each="book:${books}">
+			<td>[[${book.id}]]</td>
+			<td>[[${book.title}]]</td>
+			<td>[[${book.author}]]</td>
+		</tr>
+
+
+	</table>
+</div>	
+	
+	<ul class="leaf">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!--endo-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>貸出・返却選択</title>
+	<link href="/contact.css" rel="stylesheet">
+</head>
+
+<body>
+	<h1>貸出・返却選択</h1>
+	<br>
+	<a href="/host/select" class="btn-sticky">ホームへ</a>
+	<hr>
+	<br>
+
+	<div>[[${error}]]</div>
+
+	<form action="/host/rental/process">
+		<table border="1" class="c-commonTable2">
+			<tr>
+				<th>タイトル</th>
+				<td>[[${session.book.title}]]</td>
+			</tr>
+			<tr>
+				<th>名前</th>
+				<td>[[${session.name}]]</td>
+			</tr>
+		</table>
+		<input type="radio" name="rental" value="1" checked>貸出　
+		<input type="radio" name="rental" value="0">返却
+		<br>
+		<button class="btn-sticky">決定</button>
+	</form>
+
+	<ul class="leaf">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!--tao -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>管理者ログイン</title>
+	<link href="/contact.css" rel="stylesheet">
+</head>
+
+<body>
+	<h1>管理者ログイン</h1>
+	<br>
+	<hr>
+	<br>
+
+	<!--	<span th:if="${error}">-->
+	<div>[[${error}]]</div>
+	<!--</span>-->
+
+	<form action="/host/login" method="post">
+		<!--HostAccountControllerへ -->
+		<table border="1" class="c-commonTable2">
+			<tr>
+				<th>管理者ID</th>
+				<td>
+					<input type="number" name="id"
+						oninput="javascript:if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+						maxlength="9"><br>
+				</td>
+			</tr>
+			<tr>
+				<th>パスワード</th>
+				<td>
+					<input type="text" name="password"
+						oninput="javascript:if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+						maxlength="9"><br>
+				</td>
+			</tr>
+
+		</table>
+		<br>
+		<button class="btn-sticky">ログイン</button>
+	</form>
+
+	<ul class="leaf">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<p><img src="/toshokan_benkyou.png" alt="図書館" id="usa">
+	</p>
+
+	<script>
+		let login = document.querySelector(".btn-sticky");
+		let lib = document.querySelector("#usa");
+
+		function changeImg(filmename) {
+			lib.src = filmename;
+		}
+
+		login.addEventListener("mouseover", function () {changeImg("/tosyokan_syokuin.png");});
+		login.addEventListener("mouseout", function () {changeImg("/toshokan_benkyou.png");});
+	</script>
+</body>
+
+</html>
