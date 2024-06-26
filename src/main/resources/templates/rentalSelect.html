@@ -8,7 +8,7 @@
 	<link href="/contact.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="text-align: center;">
 	<ol class="breadcrumb-001">
 		<li>
 			<a href="/host/select">
@@ -31,7 +31,7 @@
 
 	<div>[[${error}]]</div>
 
-	<form action="/host/rental/process">
+	<form action="/host/rental/process" style="text-align: center;">
 		<table border="1" class="c-commonTable2">
 			<tr>
 				<th>タイトル</th>
@@ -42,8 +42,21 @@
 				<td>[[${session.name}]]</td>
 			</tr>
 		</table>
-		<input type="radio" name="rental" value="1" checked>貸出　
-		<input type="radio" name="rental" value="0">返却
+
+		<fieldset class="radio-2">
+
+			<label>
+				<input type="radio" name="rental" value="1" checked>貸出
+			</label>
+
+		</fieldset>
+
+		<fieldset class="radio-2">
+			<label>
+				<input type="radio" name="rental" value="0">返却
+			</label>
+		</fieldset>
+		
 		<br>
 		<button class="btn-sticky">決定</button>
 	</form>
