@@ -1,0 +1,63 @@
+<!--作成者：菊水-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>内容確認</title>
+	<link href="/contact.css" rel="stylesheet">
+</head>
+
+<body>
+	<h1>内容確認</h1>
+	<br>
+	<hr>
+	<br>
+	<form action="/host/add/account" method="post">
+		<input type="hidden" name="name" th:value="${name}">
+		<!--								↑[[${name}]] を入れる。
+			同様にメアド、パスワードもhiddenで持たせる。		
+		-->
+
+		<input type="hidden" name="password" th:value="${password}">
+
+		<table border="1" class="c-commonTable2">
+			<tr>
+				<th>名前</th>
+				<td>
+					[[${name}]]
+				</td>
+			</tr>
+			
+			<tr>
+				<th>パスワード</th>
+				<td>
+					[[${password}]]
+				</td>
+			</tr>
+
+		</table>
+		<br>
+		この内容で登録しますか？<br>
+		<button class="btn-sticky">登録</button>
+	</form>
+
+	<ul class="leaf">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+</body>
+
+</html>
