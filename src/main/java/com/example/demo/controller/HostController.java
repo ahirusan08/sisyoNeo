@@ -310,8 +310,7 @@ public class HostController {
 		rental.setLimitDate(localDateTime);
 		rentalRepository.saveAndFlush(rental);
 		
-		String string = localDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-		model.addAttribute("limitDate",string);
+		model.addAttribute("limitDate",localDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")));
 		
 			return "lendBook";
 	}
