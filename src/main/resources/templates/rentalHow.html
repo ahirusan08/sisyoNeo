@@ -13,27 +13,29 @@
 	<br>
 	<hr>
 	<br>
-	<table border="1" class="c-commonTable2">
+	<div class="table_box">
+		<table border="1">
 
-		<tr>
-			<th>利用者名</th>
-			<th>タイトル</th>
-			<th>貸出開始日</th>
-			<th>貸出期限</th>
-		</tr>
+			<tr>
+				<th class="sticky_cross">利用者名</th>
+				<th class="sticky_cross">タイトル</th>
+				<th class="sticky_cross">貸出開始日</th>
+				<th class="sticky_cross">貸出期限</th>
+			</tr>
 
-				
-					<tr th:each="num:${#numbers.sequence(1,row)}">
 
-						<td th:text="${users[num-1].name}"></td>
-						<td th:text="${books[num-1].title}"></td>
-						<td th:text="${starts[num-1]}"></td>
-						<td th:text="${ends[num-1]}"></td>
+			<tr th:each="num:${#numbers.sequence(1,row)}">
 
-					</tr>
-				
+				<td th:text="${users[num-1].name}"></td>
+				<td th:text="${books[num-1].title}"></td>
+				<td th:text="${starts[num-1]}"></td>
+				<td th:text="${ends[num-1]}"></td>
 
-	</table>
+			</tr>
+
+
+		</table>
+	</div>
 
 	<br>
 
