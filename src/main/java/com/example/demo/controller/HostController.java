@@ -315,6 +315,54 @@ public class HostController {
 			return "lendBook";
 	}
 
+	
+	//｛注｝
+	@GetMapping("/rental/how")
+	public String how(
+			Model m
+			) {
+		
+		List<Book> books = new ArrayList<>();
+		
+		List<User> users = new ArrayList<>();
+		
+		List<Rental> rentals = rentalRepository.findByReturnDateIsNullOrderByUserId();
+//		m.addAttribute("rentals", rentals);
+		
+		List<String> starts = new ArrayList<>();
+		List<String> ends = new ArrayList<>();
+		
+		
+		Integer row = rentals.size();
+		
+		if (row == null || row == 0) {
+			return "redirect:/host/select";
+		}
+
+		for(Rental r : rentals) {
+			
+			books.add(bookRepository.findById(r.getBookId()).get());
+			
+			users.add(userRepository.findById(r.getUserId()).get());
+			
+			LocalDateTime rd = r.getRentalDate();
+			starts.add(rd.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")));
+			
+			LocalDateTime ld = r.getLimitDate();
+			ends.add(ld.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")));
+		}
+		
+		
+		m.addAttribute("row", row);
+		
+		m.addAttribute("books", books);
+		m.addAttribute("users", users);
+		m.addAttribute("starts", starts);
+		m.addAttribute("ends", ends);
+		
+		
+		return "rentalHow";
+	}
 
 
 }

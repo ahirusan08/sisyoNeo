@@ -1,0 +1,60 @@
+<!--KT-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>貸出状況確認</title>
+	<link href="/contact.css" rel="stylesheet">
+</head>
+
+<body>
+	<h1>貸出状況確認</h1>
+	<br>
+	<hr>
+	<br>
+	<table border="1" class="c-commonTable2">
+
+		<tr>
+			<th>利用者名</th>
+			<th>タイトル</th>
+			<th>貸出開始日</th>
+			<th>貸出期限</th>
+		</tr>
+
+				
+					<tr th:each="num:${#numbers.sequence(1,row)}">
+
+						<td th:text="${users[num-1].name}"></td>
+						<td th:text="${books[num-1].title}"></td>
+						<td th:text="${starts[num-1]}"></td>
+						<td th:text="${ends[num-1]}"></td>
+
+					</tr>
+				
+
+	</table>
+
+	<br>
+
+	<a href="/host/select" class="btn-sticky">ホームへ</a>
+
+	<ul class="leaf">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+</body>
+
+</html>

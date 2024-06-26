@@ -36,5 +36,8 @@ public interface RentalRepository extends JpaRepository<Rental, Integer> {
 	Optional<Rental> findByBookIdAndUserIdAndReturnDateIsNull(Integer bookId, Integer userId);
 
 	List<Rental> findByReturnDateIsNullAndLimitDateLessThan(LocalDateTime today);
+	
+	
+	List<Rental> findByReturnDateIsNullOrderByUserId();
 
 }
