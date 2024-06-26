@@ -1,0 +1,63 @@
+<!--endo-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>貸出期限延長</title>
+	<link href="/contact.css" rel="stylesheet">
+</head>
+
+<body>
+	<h1>貸出期限延長</h1>
+	<br>
+	<a href="/host/select" class="btn-sticky">ホームへ</a>
+	<hr>
+	<br>
+
+	<div th:each="error:${error}">[[${error}]]</div>
+
+
+	<form action="/host/look/select" method="post">
+		<table border="1" class="c-commonTable2">
+			<tr>
+				<th>本ID</th>
+				<td>
+					<input type="number" name="bookId"
+						oninput="javascript:if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+						maxlength="9"><br>
+				</td>
+			</tr>
+			<tr>
+				<th>利用者ID</th>
+				<td>
+					<input type="number" name="userId"
+						oninput="javascript:if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+						maxlength="9"><br>
+				</td>
+			</tr>
+
+		</table>
+		<br>
+		<button class="btn-sticky">次へ</button>
+	</form>
+
+	<ul class="leaf">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+</body>
+
+</html>

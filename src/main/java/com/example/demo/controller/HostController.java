@@ -1,6 +1,7 @@
 //担当：さきちゃん 
 package com.example.demo.controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -135,7 +136,7 @@ public class HostController {
 		Book book = (Book) session.getAttribute("book");
 		Integer userId = (Integer) session.getAttribute("userId");
 
-		Optional<Rental> record = rentalRepository.findByBookIdAndVersionNo(book.getId(), 1);
+		Optional<Rental> record = rentalRepository.findByBookIdAndReturnDateIsNull(book.getId());
 		if (record.isPresent()) {
 			String error = "この本は既に貸出されています";
 			model.addAttribute("error", error);
@@ -162,14 +163,14 @@ public class HostController {
 		Integer userId = (Integer) session.getAttribute("userId");
 
 		//返却処理
-		Optional<Rental> rentalrecord = rentalRepository.findByBookIdAndUserIdAndVersionNo(book.getId(), userId, 1);
+		Optional<Rental> rentalrecord = rentalRepository.findByBookIdAndUserIdAndReturnDateIsNull(book.getId(), userId);
 
 		if (rentalrecord.isPresent()) {
 			Rental rent = rentalrecord.get();
 			rent.update(account.getId());
 			rentalRepository.saveAndFlush(rent);
 		} else {
-			Optional<Rental> bookrecord = rentalRepository.findByBookIdAndVersionNo(book.getId(), 1);
+			Optional<Rental> bookrecord = rentalRepository.findByBookIdAndReturnDateIsNull(book.getId());
 			if (bookrecord.isPresent()) {
 				String error = "この本は別の利用者によって貸出されています";
 				model.addAttribute("error", error);
@@ -211,5 +212,110 @@ public class HostController {
 
 		return "doneAddBook";//G222
 	}
+	
+	
+	@GetMapping("/rentallook")
+	public String rental() {
+		
+			return "lookSearch";
+	}
+
+	@PostMapping("/look/select")
+	public String searchlook(
+			Model model,
+			@RequestParam(name = "bookId", required = false) Integer bookId,
+			@RequestParam(name = "userId", required = false) Integer userId			
+			) {
+		
+		List<String> error = new ArrayList<>();
+
+		//空白処理
+		if (bookId == null || userId == null) {
+			error.add("全項目を入力してください");
+			model.addAttribute("error", error);
+			return "lookSearch";
+		}
+		
+		
+		//本ID、利用者IDをもとにタイトル、利用者名を検索
+		Optional<Book> bookrecord = bookRepository.findById(bookId);
+		Optional<User> userrecord = userRepository.findById(userId);
+
+		if (bookrecord.isEmpty() == true) {
+			error.add("入力した本IDは登録されていません。");
+		}
+
+		if (userrecord.isEmpty() == true) {
+			error.add("入力した利用者IDは登録されていません。");
+		}
+
+		if (error.size() != 0) {
+			model.addAttribute("error", error);
+			return "lookSearch";
+		}
+
+		
+		Optional<Rental> rentalrecord = rentalRepository.findByBookIdAndUserIdAndReturnDateIsNull(bookId, userId);
+		
+		if(rentalrecord.isPresent()) {
+			User user = userrecord.get();
+			session.setAttribute("book",bookrecord.get());
+			session.setAttribute("name",user.getName());
+			Rental rental = rentalrecord.get();
+			session.setAttribute("rental",rental);
+
+			return "selectDate";
+			
+		}else {
+		
+		if(rentalrecord.isEmpty() == true) {
+			
+			Optional<Rental> book2record = rentalRepository.findByBookIdAndReturnDateIsNull(bookrecord.get().getId());
+			if (book2record.isPresent()) {
+				error.add("この本は別の利用者によって貸出されています");
+				model.addAttribute("error", error);
+				return "lookSearch";
+
+			} else {
+				
+				 error.add("この本は貸出されていません");
+				model.addAttribute("error", error);
+				return "lookSearch";
+			}
+			
+		}
+		}
+		
+		
+		
+			return "lookSearch";
+	}
+	
+	@PostMapping("/look/done")
+	public String lookdone(
+			Model model,
+			@RequestParam(name = "date", required = false) LocalDate date
+			) {
+	
+		if(date == null){
+			String error = "日付を選択してください";
+			model.addAttribute("error",error);
+			return "selectDate";
+		}
+		Rental rental = (Rental) session.getAttribute("rental");
+		
+		LocalDateTime localDateTime = date.atStartOfDay();
+		
+		rental.update1(account.getId());
+		rental.setLimitDate(localDateTime);
+		rentalRepository.saveAndFlush(rental);
+		
+		String string = localDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+		model.addAttribute("limitDate",string);
+		
+			return "lendBook";
+	}
+
+
 
 }

@@ -79,5 +79,12 @@ public class Rental {
 		updateBy=updaterId;
 		versionNo++;
 	}
+	
+	public void update1(Integer updaterId) {
+		LocalDateTime nowDate=LocalDateTime.now();
+		updateAt=nowDate;
+		updateBy=updaterId;
+		versionNo++;
+	}
 
 }

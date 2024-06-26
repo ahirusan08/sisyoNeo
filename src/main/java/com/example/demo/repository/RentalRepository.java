@@ -31,4 +31,10 @@ public interface RentalRepository extends JpaRepository<Rental, Integer> {
 			+ "AND limit_date::TEXT LIKE ?2", nativeQuery = true)
 	List<Rental> rental(String ym1, String ym2);
 
+	Optional<Rental> findByBookIdAndReturnDateIsNull(Integer bookId);
+
+	Optional<Rental> findByBookIdAndUserIdAndReturnDateIsNull(Integer bookId, Integer userId);
+
+	List<Rental> findByReturnDateIsNullAndLimitDateLessThan(LocalDateTime today);
+
 }

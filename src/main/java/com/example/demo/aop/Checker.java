@@ -42,7 +42,7 @@ public class Checker {
 
 		LocalDateTime today = LocalDateTime.now();
 
-		List<Rental> list = rentalrepository.findByReturnDateIsNullAndVersionNoLessThanAndLimitDateLessThan(2, today);
+		List<Rental> list = rentalrepository.findByReturnDateIsNullAndLimitDateLessThan(today);
 
 		for (Rental rental : list) {
 
