@@ -24,10 +24,30 @@
 	
 	<hr>
 	<br>
-	<!--BookController-->
+	
 	<form action="/search" method="post">
 
-		<input type="month" name="ym" th:value="${ym}">
+		<input type="hidden" name="skip" value="-1">
+		<input type="hidden" name="ym" th:value="${ym}">
+		<input type="hidden" name="title" th:value="${title}">　
+		<input type="hidden" name="author" th:value="${author}">　
+		<button class="btn-stick">＜先月</button>
+	</form>
+	
+	
+	<form action="/search" method="post">
+
+		<input type="hidden" name="skip" value="1">
+		<input type="hidden" name="ym" th:value="${ym}">
+		<input type="hidden" name="title" th:value="${title}">　
+		<input type="hidden" name="author" th:value="${author}">　
+		<button class="btn-stick">来月＞</button>
+	</form>
+	<br>
+	
+	
+		<span class="addSystem">年月：</span>
+		<input type="month" name="ym" th:value="${ym}">　
 		<span class="addSystem">タイトル：</span>
 		<input type="text" name="title" th:value="${title}">　
 		<span class="addSystem">著者名：</span>
@@ -35,7 +55,8 @@
 		
 		<button class="btn-stick">検索</button>
 	</form>
-	<br>
+	
+	
 	
 
 

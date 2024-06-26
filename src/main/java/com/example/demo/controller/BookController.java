@@ -31,7 +31,7 @@ public class BookController {
 			@RequestParam(name = "title", required = false) String title,
 			@RequestParam(name = "author", required = false) String author,
 			Model m) {
-		
+
 		List<Book> books = null;
 		if (title == null && author == null || title.equals("") && author.equals("")) {
 			books = bookRepository.findAll();
@@ -46,6 +46,7 @@ public class BookController {
 
 	@RequestMapping("/search")
 	public String search(
+			@RequestParam(name = "skip", defaultValue = "0") Integer skip,
 			@RequestParam(name = "ym", required = false) String ym,
 			@RequestParam(name = "title", required = false) String title,
 			@RequestParam(name = "author", required = false) String author,
@@ -61,7 +62,7 @@ public class BookController {
 		if ((title != null || author != null)) {
 			books = bookRepository.findByTitleLikeAndAuthorLike("%" + title + "%", "%" + author + "%");
 		}
-		
+
 		m.addAttribute("books", books);
 
 		//年月ymの型変換
@@ -70,22 +71,39 @@ public class BookController {
 		Integer month;
 		if (ym == null || ym.equals("")) {
 			//検索データなしのときは今月
-			year=today.getYear();
-			month=today.getMonthValue();
-			if( String.valueOf(month).length()==1) {//一桁の月は
-				String a="0"+month;//06 のように表示
-				m.addAttribute("ym", year+"-"+a);
-			}else {
-				m.addAttribute("ym", year+"-"+month);
-			}
-			
-		}else {
+			year = today.getYear();
+			month = today.getMonthValue();
+
+		} else {
 			String yearMonth[] = ym.split("-");
 			year = Integer.parseInt(yearMonth[0]);
 			month = Integer.parseInt(yearMonth[1]);
-			
+
 		}
 
+		if (skip == 1) {
+			if (month != 12) {
+				month++;
+			} else {
+				year++;
+				month -= 11;
+			}
+		}
+		if (skip == -1) {
+			if (month != 1) {
+				month--;
+			} else {
+				year--;
+				month += 11;
+			}
+		}
+
+		if (String.valueOf(month).length() == 1) {//一桁の月は
+			String a = "0" + month;//06 のように表示
+			m.addAttribute("ym", year + "-" + a);
+		} else {
+			m.addAttribute("ym", year + "-" + month);
+		}
 		m.addAttribute("year", year);
 		m.addAttribute("month", month);
 
@@ -135,7 +153,7 @@ public class BookController {
 
 						if (r.getRentalDate().getDayOfMonth() <= j + 1
 								&& r.getReturnDate().getDayOfMonth() >= j + 1) {
-						//	System.out.println(r.getRentalDate());
+							//	System.out.println(r.getRentalDate());
 							rentalBook[i][j] = 1;
 
 							if (
