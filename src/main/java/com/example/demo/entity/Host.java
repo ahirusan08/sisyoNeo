@@ -52,16 +52,16 @@ public class Host {
 	//		this.password = password;
 	//	}
 
-	public Host(String name, String password) {
+	public Host(String name, String password, Integer hid) {
 		this.name = name;
 		this.password = password;
-		create();
+		create(hid);
 	}
 
-	private void create() {
+	private void create(Integer hid) {
 		LocalDateTime nowDate = LocalDateTime.now();
 		createdAt = nowDate;
-		createdBy = id;//Hostの作成者はHost本人
+		createdBy = hid;//Hostの作成者はHost本人
 		versionNo = 1;
 		deleteFlag = 0;
 	}

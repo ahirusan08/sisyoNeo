@@ -112,28 +112,27 @@ public class HostAccountController {
 	) {
 		//エラー処理なし
 
+		Integer hid = haccount.getId();
+		
 		//正常時
 		//Userのインスタンス作成(名前、email、パスワード)
-		Host host = new Host(name, password);
+		Host host = new Host(name, password, hid);
 
 		//		System.out.println("id:" + user.getId());
 
-		host.setCreatedBy(1);
-
+	
 		//UserRepository.saveAndFlushで作成したインスタンスを保存
 		hostrepository.saveAndFlush(host);
 
 		//新しく作成したuserのidをゲッターで取得
 		//｛注｝
-		Integer id = host.getId();
-
-		host.setCreatedBy(id);
-		hostrepository.saveAndFlush(host);
-
+	
 		m.addAttribute("name", name);
 		m.addAttribute("password", password);
+		m.addAttribute("hid", hid);
 		//同様にメアド、idを保持
 
+		Integer id = host.getId();
 		m.addAttribute("id", id);
 
 		return "doneAddHost";//登録完了画面へ
