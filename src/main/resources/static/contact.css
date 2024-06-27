@@ -537,7 +537,7 @@ img {
 	gap: 0 .5em;
 	position: relative;
 	cursor: pointer;
-	
+
 }
 
 .radio-2 label::before,
@@ -551,7 +551,7 @@ img {
 	height: 18px;
 	border: 2px solid #dee5eb;
 	box-sizing: border-box;
-	
+
 
 }
 
@@ -590,3 +590,29 @@ img {
 	display: none;
 }
 
+.cp_iptxt {
+	display: inline-block;
+	
+}
+.cp_iptxt input[type=text] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+	outline: none;
+}
+.cp_iptxt input[type=text]:focus {
+	border-color: #da3c41;
+}
+
+.cp_iptxt i {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	padding: 9px 8px;
+	transition: 0.3s;
+	color: #aaaaaa;
+}
+.cp_iptxt input[type=text]:focus + i {
+	color: #da3c41;
+}

@@ -10,13 +10,13 @@
 
 <body>
 	<th:block th:if="${@hostAccount.id}">
-	<ol class="breadcrumb-001">
-		<li>
-			<a href="/host/select">
-				<span>ホーム</span>
-			</a>
-		</li>
-	</ol>
+		<ol class="breadcrumb-001">
+			<li>
+				<a href="/host/select">
+					<span>ホーム</span>
+				</a>
+			</li>
+		</ol>
 	</th:block>
 	<h1>蔵書一覧</h1>
 	<br>
@@ -28,13 +28,19 @@
 	</th:block>
 	<br>
 	<br>
-		<form action="/show" method="post">
+	<form action="/show" method="post">
 		<b class="search">タイトル：</b>
-		<input type="text" name="title" th:value="${title}" placeholder="タイトル">　
-	
-		<b class="search">著者名：</b>
-		<input type="text" name="author" th:value="${author}" placeholder="著者名">　
 
+		<div class="cp_iptxt">
+			<input type="text" name="title" th:value="${title}">　
+			<i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+		</div>
+		<b class="search">著者名：</b>
+
+		<div class="cp_iptxt">
+			<input type="text" name="author" th:value="${author}">　
+			<i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+		</div>
 		<button class="btn-stick">検索</button>
 	</form>
 
