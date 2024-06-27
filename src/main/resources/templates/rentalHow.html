@@ -17,6 +17,7 @@
 		<table border="1">
 
 			<tr>
+				<th class="sticky_cross">貸出ID</th>
 				<th class="sticky_cross">利用者名</th>
 				<th class="sticky_cross">タイトル</th>
 				<th class="sticky_cross">貸出開始日</th>
@@ -26,6 +27,7 @@
 
 			<tr th:each="num:${#numbers.sequence(1,row)}">
 
+				<td th:text="${rentals[num-1].id}"></td>
 				<td th:text="${users[num-1].name}"></td>
 				<td th:text="${books[num-1].title}"></td>
 				<td th:text="${starts[num-1]}"></td>

@@ -328,7 +328,7 @@ public class HostController {
 		List<User> users = new ArrayList<>();
 		
 		List<Rental> rentals = rentalRepository.findByReturnDateIsNullOrderByUserId();
-//		m.addAttribute("rentals", rentals);
+		m.addAttribute("rentals", rentals);
 		
 		List<String> starts = new ArrayList<>();
 		List<String> ends = new ArrayList<>();
