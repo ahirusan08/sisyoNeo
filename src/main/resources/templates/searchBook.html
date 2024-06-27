@@ -87,7 +87,14 @@
 				
 
 				<td class="sticky_col">
-					[[${day}]]
+					<th:block th:if="${day == today && month == tomonth&& year == toyear}">
+						<b style="color:#ff7c5c">[[${day}]]</b>
+					</th:block>
+					<th:block th:unless="${day == today && month == tomonth&& year == toyear}">
+						[[${day}]]
+					</th:block>
+					
+					
 				</td>
 			</th:block>
 		</tr>

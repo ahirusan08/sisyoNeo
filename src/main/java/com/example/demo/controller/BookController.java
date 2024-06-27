@@ -269,6 +269,9 @@ public class BookController {
 
 		//④データをHTMLへ
 		m.addAttribute("rentalBook", rentalBook);
+		m.addAttribute("today", today.getDayOfMonth());
+		m.addAttribute("tomonth", today.getMonthValue());
+		m.addAttribute("toyear", today.getYear());
 
 		return "searchBook";
 
